@@ -1,5 +1,5 @@
 {% set name = "chebfun" %}
-{% set version = "0.4.3.3" %}
+{% set version = "0.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/chebpy/chebpy/archive/v{{ version }}.tar.gz
-  sha256: 2122219456425a21f39a5787b5db7cfc8adcf63b37e692849593262b12c32164
+  sha256: d3474378609e2bb201b134abee03edd68695a32952b93e9918b566ccce04e400
 
 build:
   noarch: python
