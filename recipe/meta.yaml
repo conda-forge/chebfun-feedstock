@@ -1,5 +1,6 @@
 {% set name = "chebfun" %}
-{% set version = "0.5.0" %}
+{% set version = "0.10.0" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,31 +8,32 @@ package:
 
 source:
   url: https://github.com/chebpy/chebpy/archive/v{{ version }}.tar.gz
-  sha256: c0a92e72adbcc2d4ac7d05de435978f87f36563ab82fafbe80e14272a636ca6e
+  sha256: b7a066c06d26825cb1031ed7394026ccfa6d98e417710fe16bdd9ee3e6644132
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - hatchling
   run:
-    - python >=3.7
-    - numpy >=1.16
-    - pyfftw >=0.11
+    - python >={{ python_min }}
+    - numpy >=2.4.1
+    - matplotlib-base >=3.10.0
 
 test:
   requires:
-    - nose
+    - python {{ python_min }}
+    - pip
   imports:
     - chebpy
-  source_files:
-    - tests/
   commands:
-    - nosetests --where=tests/
+    - pip check
+    - python -c "import importlib.metadata; assert importlib.metadata.version('chebfun') == '{{ version }}'"
 
 about:
   home: https://github.com/chebpy/chebpy
