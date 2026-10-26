@@ -42,7 +42,7 @@ about:
   home: https://github.com/chebpy/chebpy
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE
+  license_file: LICENSE.rst
   summary: A Python implementation of Chebfun
   description: |
     chebpy is a Python implementation of the popular MATLAB package
