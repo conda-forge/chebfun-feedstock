@@ -13,13 +13,16 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: |
+    export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
+    {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
     - pip
     - hatchling
+    - hatch-vcs
   run:
     - python >={{ python_min }}
     - numpy >=2.4.1
@@ -39,7 +42,7 @@ about:
   home: https://github.com/chebpy/chebpy
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE.rst
+  license_file: LICENSE
   summary: A Python implementation of Chebfun
   description: |
     chebpy is a Python implementation of the popular MATLAB package
