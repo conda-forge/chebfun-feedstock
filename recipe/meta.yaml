@@ -7,15 +7,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/chebpy/chebpy/archive/v{{ version }}.tar.gz
-  sha256: 520ad00bf65164293a705869cf0a05bf1f5b1a21ebe1f2db0265af0c69ad4382
+  url: https://pypi.org/packages/source/c/chebfun/chebfun-{{ version }}.tar.gz
+  sha256: 808dee444f08ded16f623785b954048ee18df750b17d2aa676c8f649c4ad45be
 
 build:
   noarch: python
-  number: 0
-  script: |
-    export SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
-    {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
